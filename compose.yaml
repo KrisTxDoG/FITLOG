@@ -1,0 +1,15 @@
+services:
+  backend:
+    build: ./backend
+    volumes:
+      - fitlog-data:/app/data
+    restart: unless-stopped
+  frontend:
+    build: ./frontend
+    ports:
+      - "127.0.0.1:8088:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+volumes:
+  fitlog-data:
